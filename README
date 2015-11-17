@@ -1,0 +1,14 @@
+TRASH and INCINERATE
+
+Support:
+POSIX.
+
+Installation:
+Type `make install` to install. The binaries are moved to ~/bin.
+Type `make uninstall` to uninstall.
+
+Usage:
+Type `trash <filenames>` to move unwanted files to .trash/ in the current
+working directory.
+
+Type `incinerate` to delete .trash/.
