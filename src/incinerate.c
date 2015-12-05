@@ -63,7 +63,15 @@ main(int argc, char* argv[])
 {
   (void) argc;
   (void) argv;
-  const char* trashdir = ".trash";
+  char* home = getenv("HOME");
+  if (home == NULL) {
+    printf("error 0: Set the environment HOME to the home directory\n");
+    return 1;
+  }
+  const char* trashcan = "/.trashcan";
+  size_t bufsize = strlen(home) + strlen(trashcan) + 1;
+  char* trashdir = malloc(bufsize);
+  snprintf(trashdir, bufsize, "%s%s", home, trashcan);
   DIR* d = opendir(trashdir);
   if (d == NULL) {
     printerror();

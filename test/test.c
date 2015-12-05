@@ -24,7 +24,8 @@ main(int argc, char* argv[])
       printerror();
     }
     /* check that the junk is in the trash */
-    if (rmdir(".trash/junk") == -1) {
+    // to do: get home and replace ~
+    if (rmdir("~/.trashcan/junk") == -1) {
       printerror();
       printf("test failed: the junk is not in the trash\n");
       return 1;

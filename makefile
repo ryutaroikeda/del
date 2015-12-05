@@ -7,7 +7,7 @@ INCINERATE=bin/incinerate
 TARGET=bin/trash
 all: build $(TRASH) $(INCINERATE)
 	
-.PHONY: release dev debug clean build test install uninstall
+.PHONY: release dev clean build test install uninstall
 
 dev: CFLAGS=-Wall -pedantic -Wextra -Wshadow -Werror -g -Isrc $(OPTFLAGS)
 dev: all
