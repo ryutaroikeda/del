@@ -65,7 +65,7 @@ main(int argc, char* argv[])
     }
     debug("trashname = %s\n", trashname);
     if (rename(filename, trashname) == -1) {
-      printf("error 5: %s\n", strerror(errno));
+      printf("error 5: %s (%s)\n", strerror(errno), trashname);
       return 1;
     }
   }

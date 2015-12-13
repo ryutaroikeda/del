@@ -1,5 +1,6 @@
 #include <errno.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
@@ -16,7 +17,7 @@ main(int argc, char* argv[])
     return 1;
   } else if (pid == 0) {
     mkdir("junk", S_IWUSR);
-    char* const trashargv[] = {"processname", "junk", NULL};
+    char* const trashargv[] = {"", "junk", NULL};
     execv("./bin/trash", trashargv);
   } else {
     int status;
@@ -24,10 +25,15 @@ main(int argc, char* argv[])
       printerror();
     }
     /* check that the junk is in the trash */
-    // to do: get home and replace ~
-    if (rmdir("~/.trashcan/junk") == -1) {
+    char* home = getenv("HOME");
+    if (home == NULL) {
+      printf("Error: the HOME environment must be set.\n");
+    }
+    char buf[256];
+    snprintf(buf, 255, "%s/.trashcan/junk", home);
+    if (rmdir(buf) == -1) {
       printerror();
-      printf("test failed: the junk is not in the trash\n");
+      printf("test failed: the junk is not in the trash (%s)\n", buf);
       return 1;
     }
   }
