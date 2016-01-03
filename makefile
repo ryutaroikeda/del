@@ -3,9 +3,7 @@ SOURCE=$(wildcard src/*.c)
 OBJECT=$(patsubst %.c,%.o,$(SOURCE))
 
 TRASH=bin/trash
-INCINERATE=bin/incinerate
-TARGET=bin/trash
-all: build $(TRASH) $(INCINERATE)
+all: build $(TRASH) 
 	
 .PHONY: release dev clean build test install uninstall
 
@@ -17,29 +15,19 @@ release: all
 $(TRASH): src/trash.c
 	$(CC) $(CFLAGS) -o $@ $<
 
-$(INCINERATE): src/incinerate.c
-	$(CC) $(CFLAGS) -o $@ $<
-	
 build:
 	@mkdir -p bin
 
 clean:
 	rm -rf $(OBJECT)
 
-test/test: test/test.o
-	$(CC) $(CFlAGS) -o test/test $<
+test:
+	test/test.sh
 
-test: test/test
-	./test/test
-
-install: $(TRASH) $(INCINERATE)
-	mv $(TRASH)  ~/bin/trash
-	mv $(INCINERATE) ~/bin/incinerate
-	chmod u+x ~/bin/trash
-	chmod u+x ~/bin/incinerate
+install: $(TRASH) 
+	@cp $(TRASH)  ~/bin/trash
+	@chmod u+x ~/bin/trash
 
 uninstall:
 	@rm ~/bin/trash
-	@rm ~/bin/incinerate
-
 

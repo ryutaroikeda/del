@@ -1,4 +1,4 @@
-TRASH and INCINERATE
+TRASH and RUMMAGE
 
 Support:
 POSIX.
@@ -6,9 +6,10 @@ POSIX.
 Installation:
 Type `make install` to install. The binaries are moved to ~/bin.
 Type `make uninstall` to uninstall.
+Run some tests by typing `make test`.
 
 Usage:
-Type `trash <filenames>` to move unwanted files to .trashcan/ in the home 
-directory.
+Type `trash <filenames>` to move unwanted files to the /tmp/trash directory.
 
-Type `incinerate` to delete .trashcan/.
+Type rummage to list files in the trash. Type rummage <filename> to retrieve
+the file.

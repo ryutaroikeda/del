@@ -1,3 +1,7 @@
+/* DEPRECATED
+ * The trash lives in /tmp where it will be cleared at reboot.
+ * This may be needed again if we move the trash elsewhere.
+ */
 #include <errno.h>
 #include <dirent.h>
 #include <stdio.h>
