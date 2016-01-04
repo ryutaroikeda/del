@@ -1,18 +1,18 @@
-CFLAGS=-Wall -pedantic -Wextra -Wshadow -g -O2 -DNDEBUG -Isrc $(OPTFLAGS)
+CFLAGS=-Wall -pedantic -Wextra -Wshadow -O2 -DNDEBUG -Isrc $(OPTFLAGS)
 SOURCE=$(wildcard src/*.c)
 OBJECT=$(patsubst %.c,%.o,$(SOURCE))
 
-TRASH=bin/trash
+TRASH=bin/del
 all: build $(TRASH) 
 	
-.PHONY: release dev clean build test install uninstall
+.PHONY: release dev clean build test install uninstall 
 
 dev: CFLAGS=-Wall -pedantic -Wextra -Wshadow -Werror -g -Isrc $(OPTFLAGS)
 dev: all
 
 release: all
 
-$(TRASH): src/trash.c
+$(TRASH): src/del.c
 	$(CC) $(CFLAGS) -o $@ $<
 
 build:
@@ -21,13 +21,12 @@ build:
 clean:
 	rm -rf $(OBJECT)
 
-test:
-	test/test.sh
-
 install: $(TRASH) 
-	@cp $(TRASH)  ~/bin/trash
-	@chmod u+x ~/bin/trash
+	@cp $(TRASH)  ~/$(TRASH)
+	@chmod u+x ~/$(TRASH)
 
 uninstall:
-	@rm ~/bin/trash
+	@rm ~/$(TRASH)
 
+test: all install
+	test/test.sh

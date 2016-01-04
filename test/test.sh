@@ -4,9 +4,7 @@ set -e
 echo "Running tests"
 test_count=0
 function set_up {
-  make
-  make install
-  rm -r /tmp/trash
+  rm -r /tmp/trash > /dev/null || true
 }
 function tear_down {
   echo "Ran $test_count tests"
@@ -18,26 +16,26 @@ function do_test {
 }
 function test_1 {
   touch junk
-  trash junk 
+  del junk 
   ! test -f junk
 }
 function test_2 {
   mkdir junk
-  trash junk
+  del junk
   ! test -d junk
 }
 function test_3 {
   mkdir junk
   touch junk/junk
-  trash junk/junk
+  del junk/junk
   ! test -f junk/junk
-  trash junk
+  del junk
   ! test -d junk
 }
 function test_4 {
   touch junk1
   touch junk2
-  trash junk1 junk2
+  del junk1 junk2
   ! test -f junk1
   ! test -f junk2
 }

@@ -1,4 +1,4 @@
-TRASH and RUMMAGE
+#`del`
 
 Support:
 POSIX.
@@ -9,7 +9,5 @@ Type `make uninstall` to uninstall.
 Run some tests by typing `make test`.
 
 Usage:
-Type `trash <filenames>` to move unwanted files to the /tmp/trash directory.
+Type `del <filenames>` to move unwanted files to the /tmp/trash directory.
 
-Type rummage to list files in the trash. Type rummage <filename> to retrieve
-the file.

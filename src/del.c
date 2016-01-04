@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
     return 1;
   }
   if (argc <= 1) {
-    printf("Usage: trash <filenames>\n");
+    printf("Usage: del <filenames>\n");
     return 1;
   }
   errno = 0;
