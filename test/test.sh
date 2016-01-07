@@ -3,9 +3,6 @@
 set -e
 echo "Running tests"
 test_count=0
-function set_up {
-  rm -r /tmp/trash > /dev/null || true
-}
 function tear_down {
   echo "Ran $test_count tests"
 }
@@ -39,7 +36,6 @@ function test_4 {
   ! test -f junk1
   ! test -f junk2
 }
-set_up
 do_test test_1
 do_test test_2
 do_test test_3

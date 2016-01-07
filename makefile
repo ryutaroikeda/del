@@ -28,5 +28,6 @@ install: $(TRASH)
 uninstall:
 	@rm ~/$(TRASH)
 
-test: all install
+test: 
 	test/test.sh
+
